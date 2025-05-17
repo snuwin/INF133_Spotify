@@ -1,0 +1,8 @@
+table a {
+    color: #007bff !important; 
+    text-decoration: underline;
+}
+
+table a:hover {
+    color: #0056b3; 
+}

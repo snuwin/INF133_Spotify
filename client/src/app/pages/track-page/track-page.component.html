@@ -1,0 +1,38 @@
+<div class="row">
+	@if(track) {
+		<div class="col-sm-6 col-12">
+			<h1>{{ track.name }}</h1>
+
+			<app-spotify-player *ngIf="track?.id" [spotifyUri]="'spotify:track:' + track?.id"></app-spotify-player>
+
+
+			<p>
+				Track on 
+				<a [routerLink]="['/album', track.album?.id]">{{ track.album?.name }}</a>
+			</p>
+
+			<div>
+				<p>
+					Artist: 
+					<span *ngFor="let artist of track.artists; let last = last">
+						<a [routerLink]="['/artist', artist.id]">{{ artist.name }}</a><span *ngIf="!last">, </span>
+					</span>
+				</p>
+			</div>
+
+			<p>Duration: {{ track.duration_ms | date:'m:ss' }}</p>
+
+			<p>
+				<a class="btn btn-light" role="button" target="_blank" [href]="track?.url">
+					Open {{ track?.name }} on Spotify
+				</a>
+			</p>
+		</div>
+
+		<div class="col-sm-6 col-12">
+			<app-thermometer *ngIf="track?.popularity !== undefined && track?.popularity !== null"
+				[popularity]="track.popularity">
+			</app-thermometer>
+		</div>
+	}
+</div>

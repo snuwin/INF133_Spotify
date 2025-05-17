@@ -1,0 +1,25 @@
+<div *ngIf="resources && resources.length > 0" [id]="carouselId" class="carousel slide carousel-fade">
+  <div class="carousel-inner">
+    <div *ngFor="let item of resources; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+      <img [src]="item.imageURL" class="d-block w-100" alt="{{ item.name }}">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ item.name }}</h5>
+
+        <p>
+          <a *ngIf="item.spotifyProfile" [href]="item.spotifyProfile" target="_blank">Open on Spotify</a>
+          <a *ngIf="!item.spotifyProfile" [routerLink]="getResourceUrl(item)">View More</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" [attr.data-bs-target]="carouselIdForBinding" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+
+  <button class="carousel-control-next" type="button" [attr.data-bs-target]="carouselIdForBinding" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

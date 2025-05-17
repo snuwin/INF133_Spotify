@@ -1,0 +1,19 @@
+<h1>Search Spotify</h1>
+<input [(ngModel)] = "searchString">
+
+<select [(ngModel)]="searchCategory">
+	<!--populate body and text value https://www.w3schools.com/tags/att_option_selected.asp-->
+	<option *ngFor="let category of searchCategories" [value]="category">{{ category }}</option>
+</select>
+<button class="btn btn-light" (click)="search()">Search</button>
+
+<app-carousel *ngIf="searchCategory === 'artist' || searchCategory === 'album'"
+    [resources]="resources"
+    [carouselId]="'spotify-carousel'">
+</app-carousel>
+
+<app-track-list *ngIf="searchCategory === 'track'"
+    [tracks]="resources"
+    [hideArtist]="false"
+    [hideAlbum]="false">
+</app-track-list>

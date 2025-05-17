@@ -1,0 +1,10 @@
+<!-- Card inside the carousel -->
+<a [routerLink]="getResourceUrl()" class="carousel-item">
+    <!-- Bind image source -->
+    <img [src]="resource.imageURL" class="d-block w-100" alt="{{ resource.name }}">
+    
+    <div class="carousel-caption d-none d-md-block">
+        <!-- Populate name -->
+        <h5>{{ resource.name }}</h5>
+    </div>
+</a>

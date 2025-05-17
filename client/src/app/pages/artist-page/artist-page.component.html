@@ -1,0 +1,28 @@
+@if(artist) {
+	<div class="row">
+		<div class="col-xl-4 col-12">
+			<h1>{{ artist.name }}</h1>
+			<img id="artistImg" [src]="artist.imageURL || 'assets/unknown.jpg'" alt="{{ artist.name }}">
+			<p>
+				<a class="btn btn-light" role="button" target="_blank" [href]="artist?.url">
+					Open {{ artist?.name }} on Spotify
+				</a>
+			</p>
+		</div>
+
+		<div class="col-xl-4 col-12 text-center"> 
+			<h3>Popularity</h3>
+			<p>{{ artist.followers | number }} followers</p>
+			<app-thermometer [popularity]="popularity"></app-thermometer>
+			<h3>{{ artist.name }}'s Albums</h3>
+			<div class="d-flex justify-content-center"> 
+				<app-carousel [resources]="albums" carouselId="artistAlbumsCarousel"></app-carousel>
+			</div>
+		</div>
+
+		<div class="col-xl-4 col-12">
+			<h3>{{ artist.name }}'s Top Tracks</h3>
+			<app-track-list *ngIf="topTracks?.length > 0" [tracks]="topTracks"></app-track-list>
+		</div>		
+	</div>
+}
